@@ -7,6 +7,7 @@ pygame.init()  # initializing pygame
 display_width = 800  #
 display_height = 600
 
+block_colour=(0,0,255)
 black = (0, 0, 0)
 white = (255, 255, 255)
 car_width = 73
@@ -39,7 +40,7 @@ def crash():
 
 
 def text_objects(text, font):
-    textSurface = font.render(text, True, black)
+    textSurface = font.render(text, True, block_colour)
     return textSurface, textSurface.get_rect()
 
 
@@ -64,7 +65,7 @@ def gameLoop():
 
     thing_startx = random.randrange(0, display_width)
     thing_starty = -600
-    thing_speed = 7
+    thing_speed = 3
     thing_width = 100
     thing_height = 100
     gameExit = False
@@ -100,6 +101,12 @@ def gameLoop():
             thing_starty = 0 - thing_height
             thing_startx = random.randrange(0, display_width)
             dodged+=1
+            if dodged%5==0:
+                thing_speed+=1
+            if(dodged%8==0):
+                thing_width*=1.2
+
+
 
 
         if y < thing_starty + thing_height:
